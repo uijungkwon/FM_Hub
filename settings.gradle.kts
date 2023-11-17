@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "FM_Hub"
 include(":app")
-include(":fm_hub_dazzang2")
 include(":fm_hub_uijung")
+include(":fm_hub_dazzang2")
