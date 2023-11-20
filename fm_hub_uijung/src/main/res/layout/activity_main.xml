@@ -7,24 +7,12 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/toolbar_borderline"
-            >
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="영화 목록"
-                android:layout_gravity="center"
-                android:textSize="23dp"
-                />
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:context = ".MyMovieList">
+        </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
