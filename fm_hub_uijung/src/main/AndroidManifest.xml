@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.FM_Hub">
         <activity
+            android:name=".GpsActivity"
+            android:exported="false" />
+        <activity
             android:name=".BaseActivity"
             android:exported="false" />
         <activity
