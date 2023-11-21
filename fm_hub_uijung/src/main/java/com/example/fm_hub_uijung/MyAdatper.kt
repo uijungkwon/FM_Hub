@@ -10,18 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 //(1) 뷰 홀더 생성하기
 class MyViewHolder(val binding:MovieItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
     init{
-        //영화 상세정보 페이지로 액티비티 전환
+        // 영화 상세정보 페이지로 액티비티 전환
         binding.itemTitle.setOnClickListener {
             val intent =Intent(binding.root.context, InfoActivity::class.java)
+            //API 객체 자체를 전송 -> id에 맞는 제목, 줄거리, 감독 등 정보를 출력하도록 수정하기!!
+
             intent.putExtra("title", binding.itemTitle.text)
             startActivity(binding.root.context, intent, null)
 
             //Toast.makeText(binding.root.context, binding.itemTitle.text, Toast.LENGTH_SHORT).show()
         }
     }
-
 }
-//(2) 어댑터 생성하기
+//(2) 어댑터 생성
 class MyAdapter(val datas: MutableList<movieItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun getItemCount(): Int = datas.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder

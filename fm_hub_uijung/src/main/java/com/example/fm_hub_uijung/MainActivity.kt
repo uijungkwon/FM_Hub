@@ -1,39 +1,48 @@
 package com.example.fm_hub_uijung
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.example.fm_hub_uijung.databinding.ActivityMainBinding
-import com.example.fm_hub_uijung.databinding.MovieItemRecyclerviewBinding
-//영화목록 data class 생성
-data class movieItem(val movie_image:Int, val movie_title:String)
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener  {
     lateinit var binding: ActivityMainBinding
+    lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        //(1) 뷰 바인딩
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //(2) 영화 목록 임시 데이터 생성
-        val movieList = ArrayList<movieItem>() //영화 포스터는 임의로 아이콘 생성
-        movieList.add(movieItem(android.R.drawable.star_on, "엘리멘탈"))
-        movieList.add(movieItem(android.R.drawable.ic_menu_camera, "엔칸토"))
-        movieList.add(movieItem(android.R.drawable.arrow_up_float, "인생은 아름다워"))
-        movieList.add(movieItem(android.R.drawable.sym_call_incoming, "인어공주"))
+        setSupportActionBar(binding.toolbar)
 
-        //(3) 영화목록 레이아웃 배치 -  LinearLayout으로 배치
-        val layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.layoutManager = layoutManager
+        toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened,
+            R.string.drawer_closed)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.syncState()
 
-        //(4) 영화 목록 어댑터에 생성한 데이터 연결
-        val adapter = MyAdapter(movieList)
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(this, 1))//구분선 출력
+        // 네비게이션 메뉴의 아이템들에게 클릭 속성을 부여.
+        binding.nav.setNavigationItemSelectedListener(this)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){ //토글 버튼을 눌렀을 때 drawer 열림
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.movie_item-> {
+                val intent = Intent(this, MainActivity2::class.java)
+                startActivity(intent) //영화목록으로 이동
+            }
+        }
+        return false
     }
 }

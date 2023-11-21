@@ -20,7 +20,8 @@ class InfoActivity : AppCompatActivity() {
 
         //(3) back 버튼 생성
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setTitle("영화 상세 정보")
+        binding.toolbar.topTitle.text = "영화 상세 정보"
+        //getSupportActionBar()?.setTitle("영화 상세 정보")
     }
     //back 기능 정의
 
