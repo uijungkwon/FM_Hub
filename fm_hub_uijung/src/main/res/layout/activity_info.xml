@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".InfoActivity">
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/info_toolbar"
         layout="@layout/activity_base" />
 
     <LinearLayout
