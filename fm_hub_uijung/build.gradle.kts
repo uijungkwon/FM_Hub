@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-//retrofit
+//retrofit-API
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.google.code.gson:gson:2.9.0")
@@ -49,6 +49,8 @@ dependencies {
 //코루틴
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+//카드뷰
+    implementation ("androidx.cardview:cardview:1.0.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

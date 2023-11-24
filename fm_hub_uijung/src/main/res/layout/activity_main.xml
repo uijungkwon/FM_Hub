@@ -13,9 +13,11 @@
         android:orientation="vertical">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:theme="@style/ToolbarTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/material_dynamic_secondary90"/>
+            android:fontFamily="@font/giants_inline"
+            android:background="#E6E6E6"/>
 
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView

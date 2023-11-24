@@ -30,7 +30,12 @@ class MyAdapter(val datas: MutableList<movieItem>) : RecyclerView.Adapter<Recycl
     override fun onBindViewHolder (holder: RecyclerView.ViewHolder, position: Int) {
         //(1) 뷰에 내가 생성한 영화 포스터, 영화제목 데이터 출력
         val binding = (holder as MyViewHolder).binding
-        binding.itemImage.setImageResource(datas[position].movie_image) //영화 포스터
+        binding.itemImage.setImageResource(R.drawable.sample) //영화 포스터//sample로 모두 같은 이미지 설정
+        //binding.itemImage.setImageResource(datas[position].movie_image.toInt())//각각 다른 이미지 부여 가능
         binding.itemTitle.text = datas[position].movie_title//영화 제목
+        binding.itemReleaseDate.text = "개봉일: "+datas[position].movie_release//영화 개봉일
+        binding.itemGenre.text = "장르: "+datas[position].movie_genre//영화 장르
+        binding.itemTime.text = "상영시간: "+ datas[position].movie_time+"분"//영화 상영시간
+
     }
 }

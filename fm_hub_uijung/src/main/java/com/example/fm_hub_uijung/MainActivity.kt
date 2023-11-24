@@ -1,6 +1,7 @@
 package com.example.fm_hub_uijung
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         // 네비게이션 메뉴의 아이템들에게 클릭 속성을 부여.
         binding.nav.setNavigationItemSelectedListener(this)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
