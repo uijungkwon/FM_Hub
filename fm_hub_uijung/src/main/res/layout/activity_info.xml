@@ -5,67 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".InfoActivity">
+    tools:context=".InfoActivity"
+    >
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/info_toolbar"
         layout="@layout/activity_base" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <ImageView
             android:id="@+id/movie_image"
-            android:layout_width="210dp"
-            android:layout_height="match_parent"
+            android:layout_width="200dp"
+            android:layout_height="248dp"
             android:src="@android:mipmap/sym_def_app_icon" />
 
         <LinearLayout
-            android:layout_width="199dp"
-            android:layout_height="280dp"
-            android:orientation="vertical">
+            android:layout_width="208dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/movie_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="엘리멘탈"
-                android:textSize="30dp"
+                android:fontFamily="@font/ibmplexsanskr_400"
+                android:text="인생은 아름다워"
+                android:textColor="@color/black"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/movie_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="전체 관람가"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/movie_come_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="2021.08.11"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/movie_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="로맨틱 코미디"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/movie_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="109분"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CACACA"
+                android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="영화관 찾기"
                 android:textColor="@color/black"
                 android:textSize="17dp"
@@ -73,54 +87,63 @@
 
         </LinearLayout>
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        >
+        android:padding="7dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ibmplexsanskr_400"
             android:text="줄거리"
-            android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="18dp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/movie_storyline"
             android:layout_width="wrap_content"
             android:layout_height="176dp"
+            android:fontFamily="@font/ibmplexsanskr_300"
             android:text="@string/sample_storyline"
+            android:textColor="@color/black"
             android:textSize="15dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="10dp"
-        >
+        android:orientation="vertical"
+        android:padding="7dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ibmplexsanskr_400"
             android:text="감독 &amp; 배우"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            />
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
         <TextView
             android:id="@+id/movie_director"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ibmplexsanskr_300"
             android:text="감독 : 피터 손"
-            />
+            android:textColor="@color/black" />
+
         <TextView
             android:id="@+id/movie_actor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ibmplexsanskr_300"
             android:text="배우 : 레아 루이스, 마모두 아티"
-            />
+            android:textColor="@color/black" />
     </LinearLayout>
 
 
