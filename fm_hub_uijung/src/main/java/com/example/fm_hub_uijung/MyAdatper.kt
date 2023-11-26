@@ -1,5 +1,6 @@
 package com.example.fm_hub_uijung;
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import com.example.fm_hub_uijung.databinding.MovieItemRecyclerviewBinding
 import android.view.LayoutInflater
@@ -8,10 +9,11 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 //(1) 뷰 홀더 생성하기
+
 class MyViewHolder(val binding:MovieItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
     init{
-        // 영화 상세정보 페이지로 액티비티 전환
-        binding.itemTitle.setOnClickListener {
+            // 영화 상세정보 페이지로 액티비티 전환
+            binding.itemTitle.setOnClickListener {
             val intent =Intent(binding.root.context, InfoActivity::class.java)
             //API 객체 자체를 전송 -> id에 맞는 제목, 줄거리, 감독 등 정보를 출력하도록 수정하기!!
 
@@ -22,6 +24,8 @@ class MyViewHolder(val binding:MovieItemRecyclerviewBinding) : RecyclerView.View
         }
     }
 }
+
+
 //(2) 어댑터 생성
 class MyAdapter(val datas: MutableList<movieItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun getItemCount(): Int = datas.size
@@ -35,7 +39,7 @@ class MyAdapter(val datas: MutableList<movieItem>) : RecyclerView.Adapter<Recycl
         binding.itemTitle.text = datas[position].movie_title//영화 제목
         binding.itemReleaseDate.text = "개봉일: "+datas[position].movie_release//영화 개봉일
         binding.itemGenre.text = "장르: "+datas[position].movie_genre//영화 장르
-        binding.itemTime.text = "상영시간: "+ datas[position].movie_time+"분"//영화 상영시간
-
     }
 }
+
+

@@ -3,12 +3,12 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 //(1) API 영화 목록 정보를 가져올 데이터 클래스 생성
-data class MOVIES(val movieListResult: MOVIEITEMRESULT)
+data class MOVIES(val movieListResult: MOVIELISTRESULT)
 /// MovieListResult 클래스의 "boxofficeType, showRange"는 "응답 구조"에 속함
 ///@SerializedName의 value객체는 직렬화 및 역직렬화 할 때 이름으로 사용되고, 값이 null일 경우 json으로 만들 필드를 자동 생략한다.
-data class MOVIEITEMRESULT(
+data class MOVIELISTRESULT(
     //@SerializedName("genreAlt") @Expose val genreAlt: String,//영화 장르별로 출력하기 위한 코드
-    @SerializedName("allMovieList") @Expose val allMovieList: List<MOVIEINFO>//새로 생성한 변수(영화 상세정보를 List로 표현하기 위해서)
+    @SerializedName("allMovieList") @Expose val allMovieList: List<MOVIEINFO> = arrayListOf()//새로 생성한 변수(영화 상세정보를 List로 표현하기 위해서)
 )
 //(2) 응답 구조
 data class MOVIEINFO(

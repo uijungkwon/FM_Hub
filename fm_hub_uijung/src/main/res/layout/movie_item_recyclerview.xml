@@ -52,14 +52,6 @@
                 android:text="hellp"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
-            <TextView
-                android:id="@+id/item_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ibmplexsanskr_300"
-                android:text="hellp"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -2,16 +2,30 @@ package com.example.fm_hub_uijung
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fm_hub_uijung.databinding.ActivityMain2Binding
 import com.example.fm_hub_uijung.databinding.ActivityMainBinding
+import com.example.fm_hub_uijung.databinding.MovieItemRecyclerviewBinding
+import retrofit2.Call
+import retrofit2.Response
+import javax.security.auth.callback.Callback
 
-data class movieItem(val movie_image:String, val movie_title:String, val movie_release:String, val movie_genre:String, val movie_time:String) //아이콘: int, 사진: String
+data class movieItem(val movie_image:String, val movie_title:String, val movie_release:String, val movie_genre:String) //아이콘: int, 사진: String
 
 class MainActivity2 : AppCompatActivity() {
     lateinit var binding:ActivityMain2Binding
+    //lateinit var list: List<MOVIEINFO>
     override fun onCreate(savedInstanceState: Bundle?) {
+        val bundle = intent.extras
+        //list = bundle?.getSerializable("movieList") as List<MOVIEINFO>
 
         super.onCreate(savedInstanceState)
         //(1) 뷰 바인딩
@@ -19,21 +33,21 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbar.topTitle.text = "영화 목록"
-
         //(2) 영화 목록 임시 데이터 생성 - API 연결
-        //스크롤 연동
+
+
         val movieList = ArrayList<movieItem>() //영화 포스터는 임의로 아이콘 생성
-        movieList.add(movieItem("@drawable/sample.jpeg", "엘리멘탈", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "엔칸토", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "인생은 아름다워", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "인어공주", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "겨울왕국", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "겟아웃", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "7번방의 선물", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "독전", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "라라랜드", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "레옹", "2021.08.11", "로맨틱 코미디", "109"))
-        movieList.add(movieItem("@drawable/sample.jpeg", "아이 필 프리티", "2021.08.11", "로맨틱 코미디", "109"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "엘리멘탈", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "엔칸토", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "인생은 아름다워", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "인어공주", "2021.08.11", "로맨틱 코미디" ))
+        movieList.add(movieItem("@drawable/sample.jpeg", "겨울왕국", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "겟아웃", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "7번방의 선물", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "독전", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "라라랜드", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "레옹", "2021.08.11", "로맨틱 코미디"))
+        movieList.add(movieItem("@drawable/sample.jpeg", "아이 필 프리티", "2021.08.11", "로맨틱 코미디"))
 
         //(3) 영화목록 레이아웃 배치 -  LinearLayout으로 배치
         val layoutManager = LinearLayoutManager(this)
@@ -45,4 +59,6 @@ class MainActivity2 : AppCompatActivity() {
         //binding.recyclerView.addItemDecoration(DividerItemDecoration(this, 1))//구분선 출력
 
     }
+
+
 }
