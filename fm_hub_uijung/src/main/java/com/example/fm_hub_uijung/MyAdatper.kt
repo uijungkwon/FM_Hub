@@ -1,6 +1,7 @@
 package com.example.fm_hub_uijung;
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import com.example.fm_hub_uijung.databinding.MovieItemRecyclerviewBinding
 import android.view.LayoutInflater
@@ -8,8 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-//(1) 뷰 홀더 생성하기
+import com.example.fm_hub_uijung.model.MovieInfo
+import com.example.fm_hub_uijung.model.MovieListModel
 
+//(1) 뷰 홀더 생성하기
+/*
 class MyViewHolder(val binding:MovieItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
     init{
             // 영화 상세정보 페이지로 액티비티 전환
@@ -41,5 +45,40 @@ class MyAdapter(val datas: MutableList<movieItem>) : RecyclerView.Adapter<Recycl
         binding.itemGenre.text = "장르: "+datas[position].movie_genre//영화 장르
     }
 }
+*/
 
+class MyViewHolder(val binding: MovieItemRecyclerviewBinding): RecyclerView.ViewHolder(binding.root){
+    init{
+        binding.itemTitle.setOnClickListener {
+            val intent = Intent(binding.root.context, InfoActivity::class.java)
+            intent.putExtra("title", binding.itemTitle.text)
+            startActivity(binding.root.context, intent, null)
+        }
+    }
+}
+
+class MyAdapter(val context: Context, val datas: MutableList<MovieInfo>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    override fun getItemCount(): Int{
+        return datas?.size ?: 0
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
+            = MyViewHolder(MovieItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val binding=(holder as MyViewHolder).binding
+
+        //add......................................
+        val model = datas!![position]
+        binding.itemTitle.text = model.movieNm
+        binding.itemGenre.text = "장르: "+model.genreAlt
+        binding.itemReleaseDate.text = "개봉일: "+model.openDt
+        binding.itemImage.setImageResource(R.drawable.sample)
+
+        /*Glide.with(context)
+            .load(model.urlToImage)
+            .into(binding.itemImage)
+*/
+    }
+}
 

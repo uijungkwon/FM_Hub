@@ -18,7 +18,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/giants_inline"
             android:background="#E6E6E6"/>
-
+        <LinearLayout
+            android:id="@+id/activity_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav"

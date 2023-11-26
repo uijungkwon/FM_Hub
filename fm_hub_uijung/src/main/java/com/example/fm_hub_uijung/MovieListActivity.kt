@@ -2,22 +2,9 @@ package com.example.fm_hub_uijung
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.fm_hub_uijung.databinding.ActivityMain2Binding
-import com.example.fm_hub_uijung.databinding.ActivityMainBinding
-import com.example.fm_hub_uijung.databinding.MovieItemRecyclerviewBinding
-import retrofit2.Call
-import retrofit2.Response
-import javax.security.auth.callback.Callback
+import com.example.fm_hub_uijung.databinding.ActivityMovieListBinding
 
+/*
 data class movieItem(val movie_image:String, val movie_title:String, val movie_release:String, val movie_genre:String) //아이콘: int, 사진: String
 
 class MainActivity2 : AppCompatActivity() {
@@ -54,11 +41,29 @@ class MainActivity2 : AppCompatActivity() {
         binding.recyclerView.layoutManager = layoutManager
 
         //(4) 영화 목록 어댑터에 생성한 데이터 연결 - 매개변수로 데이터 전송
-        val adapter = MyAdapter(movieList)
-        binding.recyclerView.adapter = adapter
+        //val adapter = MyAdapter(movieList)
+        //binding.recyclerView.adapter = adapter
         //binding.recyclerView.addItemDecoration(DividerItemDecoration(this, 1))//구분선 출력
 
     }
 
+
+}*/
+class MovieListActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMovieListBinding
+    lateinit var retrofitFragment: RetrofitFragment
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //(1) 뷰 바인딩
+        val binding = ActivityMovieListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.toolbar.topTitle.text = "영화 목록"
+        //(2) RetrofitFragment로 화면 전환
+        retrofitFragment = RetrofitFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.activity2_content, retrofitFragment) //원래 화면을 fragment 화면으로 전환
+            .commit()
+    }
 
 }
