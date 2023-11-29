@@ -59,11 +59,24 @@ class MovieListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbar.topTitle.text = "영화 목록"
+
+        setSupportActionBar(binding.toolbar.toolbar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        //binding.infoToolbar.toolbar.setTitle("영화 상세 페이지")
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         //(2) RetrofitFragment로 화면 전환
         retrofitFragment = RetrofitFragment()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.activity2_content, retrofitFragment) //원래 화면을 fragment 화면으로 전환
+            .replace(R.id.movie_list_activity, retrofitFragment) //원래 화면을 fragment 화면으로 전환
             .commit()
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 }

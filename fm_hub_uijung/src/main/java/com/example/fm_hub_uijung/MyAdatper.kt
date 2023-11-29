@@ -1,16 +1,18 @@
 package com.example.fm_hub_uijung;
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import com.example.fm_hub_uijung.databinding.MovieItemRecyclerviewBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fm_hub_uijung.model.DetailInfo
+import com.example.fm_hub_uijung.model.MovieDetailInfo
 import com.example.fm_hub_uijung.model.MovieInfo
 import com.example.fm_hub_uijung.model.MovieListModel
+import com.example.fm_hub_uijung.model.Result
 
 //(1) 뷰 홀더 생성하기
 /*
@@ -46,7 +48,7 @@ class MyAdapter(val datas: MutableList<movieItem>) : RecyclerView.Adapter<Recycl
     }
 }
 */
-
+ var movies = mutableListOf<MovieInfo>()
 class MyViewHolder(val binding: MovieItemRecyclerviewBinding): RecyclerView.ViewHolder(binding.root){
     init{
         binding.itemTitle.setOnClickListener {
@@ -57,8 +59,7 @@ class MyViewHolder(val binding: MovieItemRecyclerviewBinding): RecyclerView.View
     }
 }
 
-class MyAdapter(val context: Context, val datas: MutableList<MovieInfo>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-
+class MyAdapter(val context: Context, val datas: MutableList<DetailInfo>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun getItemCount(): Int{
         return datas?.size ?: 0
     }
@@ -70,15 +71,20 @@ class MyAdapter(val context: Context, val datas: MutableList<MovieInfo>?): Recyc
 
         //add......................................
         val model = datas!![position]
-        binding.itemTitle.text = model.movieNm
-        binding.itemGenre.text = "장르: "+model.genreAlt
-        binding.itemReleaseDate.text = "개봉일: "+model.openDt
-        binding.itemImage.setImageResource(R.drawable.sample)
+        var splitUrl:String = model.posters.toString().split("|")[0]
 
-        /*Glide.with(context)
-            .load(model.urlToImage)
-            .into(binding.itemImage)
-*/
+            if(splitUrl.isEmpty()){
+                binding.itemImage.setImageResource(R.drawable.noimg)
+            }
+            else{
+                Glide.with(this.context)
+                    .load(splitUrl)
+                    .into(binding.itemImage)
+            }
+        binding.itemTitle.text = model.title
+        binding.itemGenre.text = "장르: "+model.genre
+        binding.itemReleaseDate.text = "개봉일: "+model.repRlsDate
+
     }
 }
 

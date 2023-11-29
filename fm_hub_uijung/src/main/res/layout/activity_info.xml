@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,20 +16,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         >
 
         <ImageView
             android:id="@+id/movie_image"
-            android:layout_width="wrap_content"
-            android:layout_height="248dp"
-            android:src="@drawable/sample" />
+            android:layout_width="184dp"
+            android:layout_height="248dp" />
 
         <LinearLayout
-            android:layout_width="228dp"
+            android:layout_width="207dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:padding="8dp"
+            android:layout_marginLeft="9dp">
 
             <TextView
                 android:id="@+id/movie_title"
@@ -36,8 +37,10 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ibmplexsanskr_400"
                 android:text="인생은 아름다워"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/black"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,6 +67,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="로맨틱 코미디"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -78,13 +83,14 @@
 
             <Button
                 android:id="@+id/find_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="98dp"
                 android:layout_height="wrap_content"
+
                 android:backgroundTint="#CACACA"
                 android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="영화관 찾기"
                 android:textColor="@color/black"
-                android:textSize="17dp"
+                android:textSize="14dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -117,6 +123,8 @@
                 android:id="@+id/movie_storyline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="7"
+                android:ellipsize="end"
                 android:fontFamily="@font/ibmplexsanskr_300"
                 android:text="@string/sample_storyline"
                 android:textColor="@color/black"

@@ -1,6 +1,5 @@
 package com.example.fm_hub_uijung.retrofit
 
-import com.example.fm_hub_uijung.model.MovieListModel
 import com.example.fm_hub_uijung.model.MovieResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -15,6 +14,7 @@ interface NetworkService {
         @Query("itemPerPage") itemPerPage: String,
     ): Call<MovieResponse>
 }
+
 /*
 
 interface NetworkService {
