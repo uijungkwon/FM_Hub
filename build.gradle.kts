@@ -5,6 +5,13 @@ plugins {
 }
 
 buildscript{
+    dependencies{
+        classpath("com.android.tools.build:gradle:8.1.4")
+        classpath("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10 ")
+    }
+}
+
+buildscript{
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.1.4")
