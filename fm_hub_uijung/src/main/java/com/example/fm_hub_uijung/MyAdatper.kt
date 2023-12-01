@@ -9,10 +9,6 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fm_hub_uijung.model.DetailInfo
-import com.example.fm_hub_uijung.model.MovieDetailInfo
-import com.example.fm_hub_uijung.model.MovieInfo
-import com.example.fm_hub_uijung.model.MovieListModel
-import com.example.fm_hub_uijung.model.Result
 
 //(1) 뷰 홀더 생성하기
 /*

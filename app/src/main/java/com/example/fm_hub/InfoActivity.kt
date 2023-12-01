@@ -1,4 +1,4 @@
-package com.example.fm_hub_uijung
+package com.example.fm_hub
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.fm_hub_uijung.databinding.ActivityInfoBinding
-import com.example.fm_hub_uijung.model.MovieDetailInfo
+import com.example.fm_hub.databinding.ActivityBaseBinding
+import com.example.fm_hub.model.MovieDetailInfo
+import com.example.fm_hub.databinding.ActivityInfoBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +26,7 @@ class InfoActivity : AppCompatActivity() {
         binding.movieTitle.text = title
 
         //(3) back 버튼 생성
-        setSupportActionBar(binding.infoToolbar.toolbar)
+        setSupportActionBar(binding.infoToolbar.toolbar)///
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
         //binding.infoToolbar.toolbar.setTitle("영화 상세 페이지")
@@ -34,13 +35,11 @@ class InfoActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //(4)버튼 클릭-> 영화 찾기 페이지로 이동
-        /*
+
         binding.findBtn.setOnClickListener {
-            //예매하기 버튼 클릭 시 예매 페이지로 이동
-            val intent = Intent(this, GpsActivity::class.java)
+            val intent = Intent(this, CinemaLocationView::class.java)
             startActivity(intent)
-        }*/
-        /////////////
+        }
 
         val call: Call<MovieDetailInfo> = MyApplication.networkService2
             .getList(
@@ -58,7 +57,6 @@ class InfoActivity : AppCompatActivity() {
                     //테스트 결과 null객체로 받아와짐 -> 수정
 
                     if(splitUrl.isEmpty()){
-                        binding.movieImage.setImageResource(com.example.fm_hub_uijung.R.drawable.noimg)
                     }
                     else{
                         Glide.with(this@InfoActivity)

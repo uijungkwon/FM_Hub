@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">fm_hub_yeongsinkeem3</string>
+    <string name="app_name">FM_Hub</string>
     <string name="drawer_opened">Opened</string>
     <string name="drawer_closed">Closed</string>
 </resources>
