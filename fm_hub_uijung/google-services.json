@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "889096168968",
+    "project_id": "android-21906",
+    "storage_bucket": "android-21906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889096168968:android:c0a0f970d8bf0135a0d3bd",
+        "android_client_info": {
+          "package_name": "com.example.fm_hub_uijnug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGd_fZW6qhS2NnEAFHXyl13nBInmMu9oE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889096168968:android:d6b220d480e62c08a0d3bd",
+        "android_client_info": {
+          "package_name": "com.example.fm_hub_uijung"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGd_fZW6qhS2NnEAFHXyl13nBInmMu9oE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

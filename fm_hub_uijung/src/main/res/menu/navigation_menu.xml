@@ -5,6 +5,16 @@
         android:fontFamily="@font/ibmplexsanskr_400"
         android:icon="@android:drawable/ic_menu_help"
         android:title="영화목록"/>
+    <item
+        android:id="@+id/login_item"
+        android:fontFamily="@font/ibmplexsanskr_400"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="로그인"/>
+    <item
+        android:id="@+id/register_item"
+        android:fontFamily="@font/ibmplexsanskr_400"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="회원가입"/>
 
 
 </menu>

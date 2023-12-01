@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -56,6 +57,10 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
 //카드뷰
     implementation ("androidx.cardview:cardview:1.0.0")
+//파이어 베이스
+    implementation ("com.google.firebase:firebase-bom:30.4.1")
+    implementation ("com.google.firebase:firebase-auth-ktx:21.0.8")
+
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
