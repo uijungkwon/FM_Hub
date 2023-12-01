@@ -3,13 +3,18 @@ package com.example.fm_hub_dazzang2
 import MyAdapter
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -17,37 +22,63 @@ import java.util.Locale
 
 class DailyRanking : AppCompatActivity() {
     private lateinit var textViewDate: TextView
+    private lateinit var targetDt: String
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_ranking)
-        textViewDate = findViewById(R.id.textView_date)
-        setCurrentDate()
-        initializeView()
+        textViewDate = findViewById(R.id.textView_date)  //날짜 텍스트뷰
+        initializeView()    //날짜 텍스트뷰 클릭 시 달력 띄우기
 
         //뒤로가기 버튼 툴바
         val toolbar = findViewById<Toolbar>(R.id.toolbar) as androidx.appcompat.widget.Toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // 현재 날짜의 하루 전으로 초기화
+        setTargetDtToYesterday()
 
-        val DataList : MutableList<Datas> = mutableListOf(
-            Datas("사과", R.drawable.img_1),
-            Datas("배", R.drawable.img_1),
-            Datas("딸기", R.drawable.img_1),
-            Datas("포도", R.drawable.img_1),
-            Datas("바나나", R.drawable.img_1),
-            Datas("키위", R.drawable.img_1),
-            Datas("망고", R.drawable.img_1),
-            Datas("수박", R.drawable.img_1),
-            Datas("참외", R.drawable.img_1)
-        )
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this@DailyRanking)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MyAdapter(DataList)
-        recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        // 초기 API 호출
+        makeApiCall()
 
+        // Retrofit 통신
+        val button = findViewById<View>(R.id.button1)
+        button.setOnClickListener {
+            showDatePickerDialog()
+        }
+    }
+
+    // API 호출하는 메소드
+    private fun makeApiCall() {
+        RetrofitBuilder.api
+            .getMovieList(targetDt, "fe366da2572c8b3f9b07e12c4302d591")
+            .enqueue(object : Callback<MovieResponse> {
+                override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                    // 통신 실패한 경우
+                    Toast.makeText(this@DailyRanking, "${t.message}", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(
+                    call: Call<MovieResponse>,
+                    response: Response<MovieResponse>
+                ) {
+                    val movieResponse = response.body()
+                    val list: List<MovieDto>? = movieResponse?.boxofficeResult?.dailyBoxOfficeList
+                    Log.d("MY", "$list")
+
+                    recyclerView.adapter = MyAdapter(list)
+                    recyclerView.addItemDecoration(
+                        DividerItemDecoration(
+                            this@DailyRanking,
+                            LinearLayoutManager.VERTICAL
+                        )
+                    )
+                }
+            })
     }
 
     // 뒤로가기 버튼
@@ -56,25 +87,16 @@ class DailyRanking : AppCompatActivity() {
         return true
     }
 
-
-    private fun setCurrentDate() {
-        val currentDate = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
-        val formattedDate = dateFormat.format(currentDate)
-
-        textViewDate.text = formattedDate
-    }
-
+    // 날짜 텍스트뷰 클릭 시 달력 띄우기
     private fun initializeView() {
         textViewDate = findViewById(R.id.textView_date)
-
-        // 버튼 클릭 시 DatePickerDialog 띄우기
         val button = findViewById<View>(R.id.button1)
         button.setOnClickListener {
             showDatePickerDialog()
         }
     }
 
+    // DatePickerDialog 띄우기
     private fun showDatePickerDialog() {
         val currentDate = Calendar.getInstance()
         val year = currentDate.get(Calendar.YEAR)
@@ -86,12 +108,28 @@ class DailyRanking : AppCompatActivity() {
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 val selectedDate = "${year}년 ${month + 1}월 ${dayOfMonth}일"
                 textViewDate.text = selectedDate
+
+                // targetDt 업데이트
+                targetDt = String.format("%04d%02d%02d", year, month + 1, dayOfMonth)
+
+                // API 호출 다시 수행
+                makeApiCall()
             },
             year,
             month,
             dayOfMonth
         )
-
         datePickerDialog.show()
     }
+
+    // 날짜 텍스트뷰에 현재 날짜 설정
+    private fun setTargetDtToYesterday() {
+        val yesterday = Calendar.getInstance()
+        yesterday.add(Calendar.DAY_OF_MONTH, -1)
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        val dateFormat2 = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
+        targetDt = dateFormat.format(yesterday.time)
+        textViewDate.text = dateFormat2.format(yesterday.time)
+    }
 }
+

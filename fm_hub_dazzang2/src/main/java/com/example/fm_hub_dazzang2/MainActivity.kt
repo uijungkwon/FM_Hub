@@ -5,10 +5,16 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.fm_hub_dazzang2.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+import java.io.Serializable
 import java.security.MessageDigest
 import java.util.Base64
 import java.util.Calendar
@@ -20,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //해시코드 얻기 위한 임시코드. 삭제해도 됨
         try {
             val information =
                 packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES)
@@ -37,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        if (isSpecificDayOfWeek(Calendar.MONDAY)) {
+        if (isSpecificDayOfWeek(Calendar.FRIDAY)) {
             showPopupActivity()
         } //수요일 팝업
 
@@ -52,8 +59,9 @@ class MainActivity : AppCompatActivity() {
             startActivity (intent)
         }
 
-
     }
+
+
 
 
     private fun showPopupActivity() {

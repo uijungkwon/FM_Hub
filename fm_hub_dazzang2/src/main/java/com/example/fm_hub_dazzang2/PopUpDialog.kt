@@ -11,7 +11,7 @@ class PopUpDialog : AppCompatActivity() {
 
         val closeButton = findViewById<View>(R.id.btn_shutdown)
         closeButton.setOnClickListener {
-            finish() // 팝업 제거
+            finish() // 버튼 클릭 시 팝업 제거
         }
     }
     
