@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isSpecificDayOfWeek(Calendar.FRIDAY)) {
             showPopupActivity()
         }
+        //안녕,,,,
 
     }
 

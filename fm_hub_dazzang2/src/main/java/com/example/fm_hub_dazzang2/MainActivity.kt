@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             }
         } catch (e: Exception) {
             Log.d("hashcode", "에러::" + e.toString())
-
         }
 
         if (isSpecificDayOfWeek(Calendar.FRIDAY)) {
