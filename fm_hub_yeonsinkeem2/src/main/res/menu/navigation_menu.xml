@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/menu_item_setting"
-        android:title="Setting"
+    <item
+        android:id="@+id/menu_movie_list"
+        android:fontFamily="@font/ibmplexsanskr_400"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="영화목록"/>
+    <item android:id="@+id/menu_location"
+        android:fontFamily="@font/ibmplexsanskr_400"
+        android:title="내 주변 영화관 찾기 "
         />
-    <item android:id="@+id/menu_item_search"
+    <item android:id="@+id/menu_daily_ranking"
+        android:icon="@android:drawable/ic_menu_help"
+        android:fontFamily="@font/ibmplexsanskr_400"
+        android:title="일별 박스오피스 순위"/>
+    <item android:id="@+id/menu_culture"
+        android:icon="@android:drawable/ic_menu_help"
+        android:fontFamily="@font/ibmplexsanskr_400"
+        android:title="문화의 날"/>
+    <!--<item android:id="@+id/menu_item_search"
         android:title="Search"
         app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        />
-    <item android:id="@+id/menu_item_help"
-        android:icon="@android:drawable/ic_menu_help"
-        android:title="Help"/>
-
+        />-->
 </menu>

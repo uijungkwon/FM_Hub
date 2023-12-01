@@ -11,10 +11,6 @@ class DailyMListActivity : AppCompatActivity() {
         val binding = ActivityMovieListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.topTitle.text = "영화 목록"
-        //(2) RetrofitFragment로 화면 전환
-        //supportFragmentManager.beginTransaction()
-            //.replace(R.id.activity2_content, retrofitFragment) //원래 화면을 fragment 화면으로 전환
-            //.commit()
+        //binding.toolbar.topTitle.text = "영화 목록"
     }
 }
