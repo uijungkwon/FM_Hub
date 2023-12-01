@@ -12,6 +12,7 @@ import com.example.fm_hub.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import java.util.Calendar
 
+// 안뇽안뇽안뇽
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
