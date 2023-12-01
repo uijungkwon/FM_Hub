@@ -58,7 +58,6 @@ class MyViewHolder(val binding: MovieItemRecyclerviewBinding): RecyclerView.View
         }
     }
 }
-
 class MyAdapter(val context: Context, val datas: MutableList<DetailInfo>?): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun getItemCount(): Int{
         return datas?.size ?: 0
@@ -84,7 +83,6 @@ class MyAdapter(val context: Context, val datas: MutableList<DetailInfo>?): Recy
         binding.itemTitle.text = model.title
         binding.itemGenre.text = "장르: "+model.genre
         binding.itemReleaseDate.text = "개봉일: "+model.repRlsDate
-
     }
 }
 
