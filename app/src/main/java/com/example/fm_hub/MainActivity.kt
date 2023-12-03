@@ -4,17 +4,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Build
-import android.view.Menu
+import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.lifecycle.lifecycleScope
 import com.example.fm_hub.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
+
+// 코루틴 데이터 공유를 위한 뷰모델
+object CinemaDataStorage {
+    var geoLocationList: List<GeoLocation>? = null
+}
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var geoLocationList: ArrayList<GeoLocation>
+
+
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +46,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isSpecificDayOfWeek(Calendar.FRIDAY)) {
             showPopupActivity()
         }
-        //안녕,,,,
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            val helper = CinemaLocationHelper(context = this@MainActivity)
+            val geoLocationList = async(Dispatchers.IO) {
+                helper.getMarker("Cinema.json") as ArrayList<GeoLocation>
+            }.await()
+
+            //로그
+            Log.d("MainActivity", "geoLocationList: $geoLocationList")
+
+            // 메인 액티비티에서 데이터 저장
+            CinemaDataStorage.geoLocationList = geoLocationList
+        }
 
     }
 
@@ -44,6 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
             R.id.menu_join -> {
                 val intent = Intent(this, JoinActivity::class.java )
@@ -86,3 +112,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return currentDayOfWeek == targetDayOfWeek
     }
 }
+
