@@ -68,7 +68,7 @@ class InfoActivity : AppCompatActivity() {
                     binding.movieDirector.text = "감독: "+response.body()?.Data?.get(0)?.Result?.get(0)?.directors?.director?.get(0)?.directorNm //첫번째 감독만 출력(감독이 여러명일 경우
                     binding.movieActor.text = "배우: "+response.body()?.Data?.get(0)?.Result?.get(0)?.actors?.actor?.get(0)?.actorNm//첫번째 주연배우만 출력
                     binding.movieStoryline.text = response.body()?.Data?.get(0)?.Result?.get(0)?.plots?.plot?.get(0)?.plotText
-                    binding.movieAge.text = "·관람가: "+response.body()?.Data?.get(0)?.Result?.get(0)?.rating
+                    binding.movieAge.text = "·등급: "+response.body()?.Data?.get(0)?.Result?.get(0)?.rating
                     binding.movieTime.text = "·상영시간: "+response.body()?.Data?.get(0)?.Result?.get(0)?.runtime+"분"
                     binding.movieComeOut.text = "·개봉일: "+response.body()?.Data?.get(0)?.Result?.get(0)?.repRlsDate
 

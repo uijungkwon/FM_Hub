@@ -43,6 +43,7 @@ class MyAdapter(val context: Context, val datas: MutableList<DetailInfo>?): Recy
         binding.itemTitle.text = model.title
         binding.itemGenre.text = "장르: "+model.genre
         binding.itemReleaseDate.text = "개봉일: "+model.repRlsDate
+        binding.itemRating.text = "등급: "+model.rating
     }
 }
 

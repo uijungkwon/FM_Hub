@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var headerView: View
     lateinit var loginBtn: TextView
     lateinit var loginUser: TextView
-    //의정주석!!
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(binding.root)
         //setContentView(R.layout.activity_main)
 
-        //main activity 툴바 include 해서 코드 변경!!! - uijung
+        //uijung : main activity 툴바 include 해서 코드 변경!!!
         setSupportActionBar(binding.toolbar)
 
         toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.nav.setNavigationItemSelectedListener(this)
         binding2 = NavigationHeaderBinding.inflate(layoutInflater)
+        //
 
         /*팝업창 띄우는 코드 -> 수요일로 수정*/
         if (isSpecificDayOfWeek(Calendar.FRIDAY)) {
@@ -61,6 +62,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(intent)
         }
     }
+
+    /*로그인, 로그아웃 상태에 따라 다르게 "View" 보여주기*/
     override fun onStart() {
         super.onStart()
         if(!MyFirebaseApplication.checkAuth()){
@@ -83,7 +86,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return true
         return super.onOptionsItemSelected(item)
     }
-
+    /*예비로 만들었던 로그인, 회원가입 목록 삭제*/
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_movie_list -> {
