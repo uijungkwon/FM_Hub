@@ -33,7 +33,7 @@ class InfoActivity : AppCompatActivity() {
 
         binding.infoToolbar.topTitle.text = "영화 상세 페이지" //내가 커스텀한대로 출력 가능
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.back_button)
         //(4)버튼 클릭-> 영화 찾기 페이지로 이동
 
         binding.findBtn.setOnClickListener {
@@ -53,7 +53,7 @@ class InfoActivity : AppCompatActivity() {
             override fun onResponse(call: Call<MovieDetailInfo>, response: Response<MovieDetailInfo>) {
                 if(response.isSuccessful){
                     var splitUrl:String = response.body()?.Data?.get(0)?.Result?.get(0)?.posters.toString().split("|")[0]
-                    Toast.makeText(this@InfoActivity,response.body()?.Data?.get(0)?.Result?.get(0)?.posters, Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@InfoActivity,response.body()?.Data?.get(0)?.Result?.get(0)?.posters, Toast.LENGTH_SHORT).show()
                     //테스트 결과 null객체로 받아와짐 -> 수정
 
                     if(splitUrl.isEmpty()){
@@ -64,13 +64,13 @@ class InfoActivity : AppCompatActivity() {
                             .into(binding.movieImage)
                     }
 
-                    binding.movieGenre.text = "장르"+response.body()?.Data?.get(0)?.Result?.get(0)?.genre
+                    binding.movieGenre.text = "·장르: "+response.body()?.Data?.get(0)?.Result?.get(0)?.genre
                     binding.movieDirector.text = "감독: "+response.body()?.Data?.get(0)?.Result?.get(0)?.directors?.director?.get(0)?.directorNm //첫번째 감독만 출력(감독이 여러명일 경우
                     binding.movieActor.text = "배우: "+response.body()?.Data?.get(0)?.Result?.get(0)?.actors?.actor?.get(0)?.actorNm//첫번째 주연배우만 출력
                     binding.movieStoryline.text = response.body()?.Data?.get(0)?.Result?.get(0)?.plots?.plot?.get(0)?.plotText
-                    binding.movieAge.text = "관람가: "+response.body()?.Data?.get(0)?.Result?.get(0)?.rating
-                    binding.movieTime.text = "상영시간: "+response.body()?.Data?.get(0)?.Result?.get(0)?.runtime+"분"
-                    binding.movieComeOut.text = "개봉일: "+response.body()?.Data?.get(0)?.Result?.get(0)?.repRlsDate
+                    binding.movieAge.text = "·관람가: "+response.body()?.Data?.get(0)?.Result?.get(0)?.rating
+                    binding.movieTime.text = "·상영시간: "+response.body()?.Data?.get(0)?.Result?.get(0)?.runtime+"분"
+                    binding.movieComeOut.text = "·개봉일: "+response.body()?.Data?.get(0)?.Result?.get(0)?.repRlsDate
 
                 }
             }

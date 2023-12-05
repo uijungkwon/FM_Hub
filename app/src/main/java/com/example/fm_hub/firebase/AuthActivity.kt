@@ -20,6 +20,13 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        /*툴바 생성*/
+        binding.toolbar.topTitle.text = "로그인"
+        setSupportActionBar(binding.toolbar.toolbar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.back_button)//흰색 백버튼
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (MyFirebaseApplication.checkAuth()) {
             changeVisibility("login")
@@ -130,12 +137,15 @@ class AuthActivity : AppCompatActivity() {
                 }
         }
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
     //모드 변경 함수
     fun changeVisibility(mode: String) {
         if (mode === "login") { //로그인이 된 상태의 화면, ~반갑습니다, 로그아웃 버튼 생성
             binding.run {
-                authMainTextView.text = "${MyFirebaseApplication.email} 님 FM_Hub에 오신걸 환영합니다!."
+                authMainTextView.text = "${MyFirebaseApplication.email} 님 로그아웃 하시겠습니까?"
                 logoutBtn.visibility = View.VISIBLE
                 goSignInBtn.visibility = View.GONE
                 googleLoginBtn.visibility = View.GONE
@@ -143,28 +153,31 @@ class AuthActivity : AppCompatActivity() {
                 authPasswordEditView.visibility = View.GONE
                 signBtn.visibility = View.GONE
                 loginBtn.visibility = View.GONE
+                binding.toolbar.topTitle.text = "로그 아웃"
             }
 
         } else if (mode === "logout") { //로그아웃 모드 일 때, 모든 버튼 활성화 해서 회원가입 하거나? 로그인 하도록함
             binding.run {
-                authMainTextView.text = "로그인 하거나 회원가입 해주세요."
+                //authMainTextView.text = "로그인 하거나 회원가입 해주세요."
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.VISIBLE
-                googleLoginBtn.visibility = View.VISIBLE
+                googleLoginBtn.visibility = View.GONE //일단 구글인증은 안보이게!
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.GONE
                 loginBtn.visibility = View.VISIBLE
+                binding.toolbar.topTitle.text = "로그인"
             }
         } else if (mode === "signin") {//회원가입 버튼을 눌렀을 때, 회원가입 할수 있는 모드로 변경, "가입" 버튼 활성화
             binding.run {
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.GONE
-                googleLoginBtn.visibility = View.GONE
+                googleLoginBtn.visibility = View.GONE //구글인증은 안보이게!
                 authEmailEditView.visibility = View.VISIBLE
                 authPasswordEditView.visibility = View.VISIBLE
                 signBtn.visibility = View.VISIBLE
                 loginBtn.visibility = View.GONE
+                binding.toolbar.topTitle.text = "회원 가입"
             }
         }
     }

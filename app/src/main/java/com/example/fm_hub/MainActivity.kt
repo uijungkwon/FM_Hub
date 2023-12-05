@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var headerView: View
-    lateinit var loginBtn: Button
+    lateinit var loginBtn: TextView
     lateinit var loginUser: TextView
     //의정주석!!
     @RequiresApi(Build.VERSION_CODES.P)
@@ -35,9 +35,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //setContentView(R.layout.activity_main)
+
+        //main activity 툴바 include 해서 코드 변경!!! - uijung
         setSupportActionBar(binding.toolbar)
+
         toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         toggle.syncState()
 
         binding.nav.setNavigationItemSelectedListener(this)
@@ -47,9 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isSpecificDayOfWeek(Calendar.FRIDAY)) {
             showPopupActivity()
         }
+
         /*네비게이션 뷰 헤더 ->  로그인 버튼 구성 -> 로그인 버튼 누르면 액티비티 이동*/
         headerView = binding.nav.getHeaderView(0)
-        loginBtn = headerView.findViewById<Button>(R.id.mainLoginBtn)
+        loginBtn = headerView.findViewById<TextView>(R.id.mainLoginBtn)
         loginUser = headerView.findViewById<TextView>(R.id.loginUser)
         loginBtn.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
@@ -59,18 +64,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onStart() {
         super.onStart()
         if(!MyFirebaseApplication.checkAuth()){
-            loginBtn = headerView.findViewById<Button>(R.id.mainLoginBtn)
+            loginBtn = headerView.findViewById<TextView>(R.id.mainLoginBtn)
             loginUser = headerView.findViewById<TextView>(R.id.loginUser)
             loginBtn.visibility=View.VISIBLE
             loginBtn.setText("로그인")
             loginUser.visibility=View.GONE
         }else {
-            loginBtn = headerView.findViewById<Button>(R.id.mainLoginBtn)
+            loginBtn = headerView.findViewById<TextView>(R.id.mainLoginBtn)
             loginUser = headerView.findViewById<TextView>(R.id.loginUser)
-
-            loginBtn.setText("로그아웃")
+            loginBtn.setText("로그 아웃")
             loginUser.visibility=View.VISIBLE
-            loginUser.setText(MyFirebaseApplication.email+" 님 환영합니다!")
+            loginUser.setText(MyFirebaseApplication.email+" 님 ")
 
         }
     }
