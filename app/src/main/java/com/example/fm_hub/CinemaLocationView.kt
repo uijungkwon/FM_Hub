@@ -2,30 +2,27 @@ package com.example.fm_hub
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fm_hub.databinding.ActivityCinemaLocationViewBinding
+import com.example.fm_hub.model.GeoLocation
+import com.example.fm_hub.model.Quad
 import com.google.android.gms.location.LocationRequest
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-
+import com.naver.maps.map.util.MarkerIcons
 
 
 class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
-    lateinit var binding: ActivityCinemaLocationViewBinding
-    lateinit var geoLocationList: ArrayList<GeoLocation>
+    lateinit var geoLocationList: ArrayList<Quad<GeoLocation, String, String, String>>
 
 
 
@@ -47,7 +44,7 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
         //비동기 처리
-        geoLocationList = CinemaDataStorage.geoLocationList as ArrayList<GeoLocation>
+        geoLocationList = CinemaDataStorage.geoLocationList as ArrayList<Quad<GeoLocation, String, String, String>>
 
     }
 
@@ -70,27 +67,44 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
         this.naverMap = naverMap
         naverMap.locationSource = locationSource
         val uiSettings = naverMap.uiSettings
+        var currentInfoWindow: InfoWindow? = null
         uiSettings.isLocationButtonEnabled = true
         uiSettings.isCompassEnabled = true
 
-        //마커
+        //마커 임시
         val marker = Marker()
         marker.position = LatLng(37.5670135, 126.9783740)
         marker.map = naverMap
 
 
-
         //로그
         Log.d("CinemaLocationView", "geoLocationList: $geoLocationList")
         //다중 마커
-        for (geoLocation in geoLocationList) {
+        for (i in 0 until geoLocationList.size) {
             val marker = Marker()
-            marker.position = LatLng(geoLocation.lng, geoLocation.lat)
+            marker.position = LatLng(geoLocationList[i].first.lng, geoLocationList[i].first.lat)
+            marker.icon = MarkerIcons.BLACK
             marker.map = naverMap
-            //마커 클릭시 주소
+            marker.tag = "주소 : "+ geoLocationList[i].second + "\n" + geoLocationList[i].third + "\ntel : " + geoLocationList[i].fourth
+
+            // 마커 클릭 시 정보창 다른 것 클릭 시 닫기
+            marker.setOnClickListener {
+                // 현재 열려 있는 InfoWindow가 있다면 닫기
+                currentInfoWindow?.close()
+
+                val infoWindow = InfoWindow()
+                infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
+                    override fun getText(infoWindow: InfoWindow): CharSequence {
+                        return marker.tag as CharSequence
+                    }
+                }
+                infoWindow.open(marker)
+                // 열린 InfoWindow를 현재 열린 InfoWindow로 설정
+                currentInfoWindow = infoWindow
+                true
+            }
         }
     }
-
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
