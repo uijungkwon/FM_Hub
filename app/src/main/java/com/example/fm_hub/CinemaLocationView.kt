@@ -71,7 +71,7 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
         uiSettings.isLocationButtonEnabled = true
         uiSettings.isCompassEnabled = true
 
-        //마커 임시
+        //마커 서울시청 임시
         val marker = Marker()
         marker.position = LatLng(37.5670135, 126.9783740)
         marker.map = naverMap
@@ -85,9 +85,9 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
             marker.position = LatLng(geoLocationList[i].first.lng, geoLocationList[i].first.lat)
             marker.icon = MarkerIcons.BLACK
             marker.map = naverMap
-            marker.tag = "주소 : "+ geoLocationList[i].second + "\n" + geoLocationList[i].third + "\ntel : " + geoLocationList[i].fourth
+            marker.tag =  geoLocationList[i].third + "\n주소 : "+ geoLocationList[i].second  + "\ntel : " +  (geoLocationList[i].fourth.replace("null", "정보 없음"))
 
-            // 마커 클릭 시 정보창 다른 것 클릭 시 닫기
+            // 마커 클릭 시 정보창 & 다른 것 클릭 시 닫기
             marker.setOnClickListener {
                 // 현재 열려 있는 InfoWindow가 있다면 닫기
                 currentInfoWindow?.close()
