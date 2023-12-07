@@ -39,6 +39,9 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
                 fm.beginTransaction().add(R.id.map, it).commit()
             }
 
+
+
+
         mapFragment.getMapAsync(this)
         //뷰모델
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
@@ -109,6 +112,12 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
+    //back 기능 정의
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
 }
 
 

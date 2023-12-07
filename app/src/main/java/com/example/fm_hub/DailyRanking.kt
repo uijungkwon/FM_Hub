@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fm_hub.databinding.ActivityDailyRankingBinding
+import com.example.fm_hub.databinding.ActivityInfoBinding
 import com.example.fm_hub.model.MovieDto
 import com.example.fm_hub.model.MovieResponse
 import com.example.fm_hub.retrofit.RetrofitBuilder
@@ -27,8 +29,10 @@ class DailyRanking : AppCompatActivity() {
     private lateinit var textViewDate: TextView
     private lateinit var targetDt: String
     private lateinit var recyclerView: RecyclerView
-
+    lateinit var binding: ActivityDailyRankingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        val binding = ActivityInfoBinding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_ranking)
         textViewDate = findViewById(R.id.textView_date)  //날짜 텍스트뷰
@@ -53,6 +57,15 @@ class DailyRanking : AppCompatActivity() {
         button.setOnClickListener {
             showDatePickerDialog()
         }
+
+        //back 버튼 생성
+        setSupportActionBar(binding.infoToolbar.toolbar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+
+        binding.infoToolbar.topTitle.text = "일별 박스오피스"
+        getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.back_button)
+
     }
 
     // API 호출하는 메소드

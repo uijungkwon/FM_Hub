@@ -15,12 +15,9 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#E6E6E6">
-        </androidx.appcompat.widget.Toolbar>
+        <include
+            android:id="@+id/info_toolbar"
+            layout="@layout/activity_base" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
