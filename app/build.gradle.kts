@@ -15,10 +15,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        //파이어베이스
-        multiDexEnabled = true
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -34,14 +33,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
 
-        //추가 코드
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "1.8"
 
-        //추가 코드
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
