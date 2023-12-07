@@ -31,7 +31,7 @@ class DailyRanking : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     lateinit var binding: ActivityDailyRankingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivityInfoBinding.inflate(layoutInflater)
+        val binding = ActivityDailyRankingBinding.inflate(layoutInflater)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_ranking)
