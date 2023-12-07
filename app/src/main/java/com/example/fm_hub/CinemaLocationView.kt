@@ -23,14 +23,16 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
     lateinit var geoLocationList: ArrayList<Quad<GeoLocation, String, String, String>>
-
+    lateinit var binding:ActivityCinemaLocationViewBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cinema_location_view)
+
 
         val binding = ActivityCinemaLocationViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val locationRequest = LocationRequest.create()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
         val fm = supportFragmentManager
@@ -49,6 +51,15 @@ class CinemaLocationView : AppCompatActivity(), OnMapReadyCallback {
         //비동기 처리
         geoLocationList = CinemaDataStorage.geoLocationList as ArrayList<Quad<GeoLocation, String, String, String>>
 
+        //back 버튼 생성
+        binding.infoToolbar.topTitle.text = "영화관 찾기"
+        setSupportActionBar(binding.infoToolbar.toolbar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.back_button)//흰색 백버튼
+        //binding.infoToolbar.toolbar.setTitle("영화 상세 페이지")
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,

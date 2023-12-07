@@ -34,14 +34,17 @@ class DailyRanking : AppCompatActivity() {
         val binding = ActivityDailyRankingBinding.inflate(layoutInflater)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daily_ranking)
+        setContentView(binding.root)
+
         textViewDate = findViewById(R.id.textView_date)  //날짜 텍스트뷰
         initializeView()    //날짜 텍스트뷰 클릭 시 달력 띄우기
 
         //뒤로가기 버튼 툴바
+        /*
         val toolbar = findViewById<Toolbar>(R.id.toolbar) as androidx.appcompat.widget.Toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        */
 
         // 현재 날짜의 하루 전으로 초기화
         setTargetDtToYesterday()
@@ -59,12 +62,11 @@ class DailyRanking : AppCompatActivity() {
         }
 
         //back 버튼 생성
-        setSupportActionBar(binding.infoToolbar.toolbar)
+        setSupportActionBar(binding.dailyToolbar.toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
-
-        binding.infoToolbar.topTitle.text = "일별 박스오피스"
         getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.back_button)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        binding.dailyToolbar.topTitle.text = "일별 박스오피스 순위"
 
     }
 
@@ -99,8 +101,8 @@ class DailyRanking : AppCompatActivity() {
 
     // 뒤로가기 버튼
     override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     // 날짜 텍스트뷰 클릭 시 달력 띄우기
