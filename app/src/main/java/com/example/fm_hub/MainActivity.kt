@@ -4,21 +4,36 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Build
-import android.view.Menu
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+
 import com.example.fm_hub.databinding.ActivityAuthBinding
 import com.example.fm_hub.databinding.ActivityMainBinding
 import com.example.fm_hub.databinding.NavigationHeaderBinding
 import com.example.fm_hub.firebase.AuthActivity
 import com.example.fm_hub.firebase.MyFirebaseApplication
+
+import androidx.lifecycle.lifecycleScope
+import com.example.fm_hub.databinding.ActivityMainBinding
+import com.example.fm_hub.model.GeoLocation
+import com.example.fm_hub.model.Quad
+
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
+
+// 코루틴 데이터 공유를 위한 뷰모델 추가
+object CinemaDataStorage {
+    var geoLocationList: ArrayList<Quad<GeoLocation, String, String, String>>? = null
+}
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var binding: ActivityMainBinding
     lateinit var binding2:NavigationHeaderBinding
@@ -53,6 +68,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             showPopupActivity()
         }
 
+
         /*네비게이션 뷰 헤더 ->  로그인 버튼 구성 -> 로그인 버튼 누르면 액티비티 이동*/
         headerView = binding.nav.getHeaderView(0)
         loginBtn = headerView.findViewById<TextView>(R.id.mainLoginBtn)
@@ -60,6 +76,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loginBtn.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
+        }
+        /*코루틴으로 영화관 위치정보 가져오기*/
+        lifecycleScope.launch(Dispatchers.Main) {
+            val helper = CinemaLocationHelper(context = this@MainActivity)
+            val geoLocationList = async(Dispatchers.IO) {
+                helper.getMarker("Cinema.json") as ArrayList<Quad<GeoLocation, String, String, String>>
+            }.await()
+
+            //로그, 나중에 빼시길
+            Log.d("MainActivity", "geoLocationList: $geoLocationList")
+
+            // 메인 액티비티에서 데이터 저장
+            CinemaDataStorage.geoLocationList = geoLocationList
         }
     }
 
@@ -88,6 +117,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     /*예비로 만들었던 로그인, 회원가입 목록 삭제*/
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
             R.id.menu_movie_list -> {
                 val intent = Intent(this, MovieListActivity::class.java )
@@ -122,3 +152,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return currentDayOfWeek == targetDayOfWeek
     }
 }
+
