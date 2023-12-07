@@ -25,7 +25,8 @@ class RetrofitFragment : Fragment() {
         val call: Call<MovieDetailInfo> = MyApplication.networkService3
             .getList(
                 "Y",
-                "202301",
+                "202302",
+                20,
             MyApplication.SERVICEKEY,
         )
         call?.enqueue(object: Callback<MovieDetailInfo> {

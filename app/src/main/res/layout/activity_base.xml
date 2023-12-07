@@ -10,14 +10,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E6E6E6" >
+        android:background="#0000CC" >
         <TextView
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="FM_Hub"
             android:fontFamily="@font/ibmplexsanskr_500"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:id="@+id/top_title"
             android:textSize="23dp"
             />

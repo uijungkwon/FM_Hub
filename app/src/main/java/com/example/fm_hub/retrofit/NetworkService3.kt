@@ -10,6 +10,7 @@ interface NetworkService3 {
     fun getList(
         @Query("detail") detail: String,
         @Query("releaseDts") releaseDts: String,
+        @Query("listCount") listCount: Int,
         @Query("ServiceKey") serviceKey: String?,
     ): Call<MovieDetailInfo>
 }

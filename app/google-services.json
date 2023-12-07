@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "889096168968",
+    "project_id": "android-21906",
+    "storage_bucket": "android-21906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889096168968:android:f046910fadba3ddfa0d3bd",
+        "android_client_info": {
+          "package_name": "com.example.fm_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889096168968-j6lh3fhugsfd1a6bvsom65vnrjp2tfqv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fm_hub",
+            "certificate_hash": "bdd93cc6aed025c9f0a42b0f46787182e846358a"
+          }
+        },
+        {
+          "client_id": "889096168968-9oft315h4b81e5oqppdv7ajunfrtjtgt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGd_fZW6qhS2NnEAFHXyl13nBInmMu9oE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889096168968-9oft315h4b81e5oqppdv7ajunfrtjtgt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

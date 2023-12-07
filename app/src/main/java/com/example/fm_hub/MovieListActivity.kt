@@ -18,6 +18,7 @@ class MovieListActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar.toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.back_button)//흰색 백버튼
         //binding.infoToolbar.toolbar.setTitle("영화 상세 페이지")
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
