@@ -4,17 +4,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Build
-import android.view.Menu
+import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.lifecycle.lifecycleScope
 import com.example.fm_hub.databinding.ActivityMainBinding
+import com.example.fm_hub.model.GeoLocation
+import com.example.fm_hub.model.Quad
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
+
+// 코루틴 데이터 공유를 위한 뷰모델 추가
+object CinemaDataStorage {
+    var geoLocationList: ArrayList<Quad<GeoLocation, String, String, String>>? = null
+}
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+
+
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +48,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             showPopupActivity()
         }
 
+        /*코루틴으로 영화관 위치정보 가져오기*/
+        lifecycleScope.launch(Dispatchers.Main) {
+            val helper = CinemaLocationHelper(context = this@MainActivity)
+            val geoLocationList = async(Dispatchers.IO) {
+                helper.getMarker("Cinema.json") as ArrayList<Quad<GeoLocation, String, String, String>>
+            }.await()
+
+            //로그, 나중에 빼시길
+            Log.d("MainActivity", "geoLocationList: $geoLocationList")
+
+            // 메인 액티비티에서 데이터 저장
+            CinemaDataStorage.geoLocationList = geoLocationList
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -43,6 +71,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
             R.id.menu_join -> {
                 val intent = Intent(this, JoinActivity::class.java )
@@ -85,3 +114,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return currentDayOfWeek == targetDayOfWeek
     }
 }
+

@@ -50,6 +50,7 @@ dependencies {
 //코루틴
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation ("androidx.activity:activity-ktx:1.3.1")
 //카드뷰
     implementation ("androidx.cardview:cardview:1.0.0")
 //파이어 베이스

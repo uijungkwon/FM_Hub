@@ -122,8 +122,18 @@ class DailyRanking : AppCompatActivity() {
             month,
             dayOfMonth
         )
+
+        // 어제 날짜의 timestamp 구하기
+        val yesterday = Calendar.getInstance()
+        yesterday.add(Calendar.DAY_OF_MONTH, -1)
+        val yesterdayTimestamp = yesterday.timeInMillis
+
+        // 최대 선택 가능한 날짜를 어제로 설정
+        datePickerDialog.datePicker.maxDate = yesterdayTimestamp
         datePickerDialog.show()
     }
+
+
 
     // 날짜 텍스트뷰에 현재 날짜 설정
     private fun setTargetDtToYesterday() {
