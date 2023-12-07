@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="FM_Hub_Theme" parent="Theme.Material3.Light.NoActionBar">
         <item name = "colorPrimary">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/ibmplexsanskr_500</item>
     </style>
     <style name="Theme.FM_Hub_Theme" parent="Base.Theme.FM_Hub" />
 </resources>
