@@ -29,9 +29,8 @@ class InfoActivity : AppCompatActivity() {
         setSupportActionBar(binding.infoToolbar.toolbar)///
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
-        //binding.infoToolbar.toolbar.setTitle("영화 상세 페이지")
-
-        binding.infoToolbar.topTitle.text = "영화 상세 페이지" //내가 커스텀한대로 출력 가능
+        binding.infoToolbar.toolbar.setTitle("영화 상세 페이지")
+        
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //(4)버튼 클릭-> 영화 찾기 페이지로 이동

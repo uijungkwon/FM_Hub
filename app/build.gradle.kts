@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    // for firebase
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -15,6 +17,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // 파이어베이스 오류 방지
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -54,7 +59,15 @@ dependencies {
     implementation ("androidx.cardview:cardview:1.0.0")
 //파이어 베이스
     implementation ("com.google.firebase:firebase-bom:30.4.1")
+    implementation("com.google.android.gms:play-services-auth:20.3.0")
+    implementation("androidx.multidex:multidex:2.0.1")
     implementation ("com.google.firebase:firebase-auth-ktx:21.0.8")
+    //implementation ("com.google.firebase:firebase-firestore-ktx:24.1.0")
+
+
+    //파이어 베이스 홈페이지
+    //implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    //implementation("com.google.firebase:firebase-analytics")
 //naver map
     implementation("com.naver.maps:map-sdk:3.17.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
