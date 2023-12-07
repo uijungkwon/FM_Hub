@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    // for firebase
     id("com.google.gms.google-services")
 }
 
@@ -18,7 +17,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // 파이어베이스 오류 방지
         multiDexEnabled = true
     }
 
@@ -34,9 +32,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         viewBinding = true
@@ -45,6 +47,12 @@ android {
 }
 
 dependencies {
+//파이어베이스
+    implementation("com.google.firebase:firebase-bom:30.4.1")
+    implementation("com.google.android.gms:play-services-auth:20.3.0")
+    implementation("androidx.multidex:multidex:2.0.1")
+    implementation("com.google.firebase:firebase-auth-ktx:21.0.8")
+
 //retrofit-API
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -55,19 +63,12 @@ dependencies {
 //코루틴
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation ("androidx.activity:activity-ktx:1.3.1")
 //카드뷰
     implementation ("androidx.cardview:cardview:1.0.0")
 //파이어 베이스
     implementation ("com.google.firebase:firebase-bom:30.4.1")
-    implementation("com.google.android.gms:play-services-auth:20.3.0")
-    implementation("androidx.multidex:multidex:2.0.1")
     implementation ("com.google.firebase:firebase-auth-ktx:21.0.8")
-    //implementation ("com.google.firebase:firebase-firestore-ktx:24.1.0")
-
-
-    //파이어 베이스 홈페이지
-    //implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
-    //implementation("com.google.firebase:firebase-analytics")
 //naver map
     implementation("com.naver.maps:map-sdk:3.17.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")

@@ -19,6 +19,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".firebase.MyFirebaseApplication"
+            android:exported="false" />
+        <activity
+            android:name=".firebase.AuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".MovieListActivity"
             android:exported="true" />
         <activity

@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Build
-import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fm_hub.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import java.util.Calendar
-import android.widget.Button
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var binding: ActivityMainBinding
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.nav.setNavigationItemSelectedListener(this)
 
-        val loginButton = binding.nav.getHeaderView(0).findViewById<Button>(R.id.loginButton)
         // recyclerview by yeongsinkeem
         mRecyclerView = binding.recyclerViewMovie
         mRecyclerAdapter = MyRecyclerAdapter()
