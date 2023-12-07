@@ -42,10 +42,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.nav.setNavigationItemSelectedListener(this)
 
         val loginButton = binding.nav.getHeaderView(0).findViewById<Button>(R.id.loginButton)
-        loginButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
         // recyclerview by yeongsinkeem
         mRecyclerView = binding.recyclerViewMovie
         mRecyclerAdapter = MyRecyclerAdapter()
@@ -98,10 +94,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_join -> {
-                val intent = Intent(this, JoinActivity::class.java )
-                startActivity(intent)
-            }
             R.id.menu_movie_list -> {
                 val intent = Intent(this, MovieListActivity::class.java )
                 startActivity(intent)
@@ -117,10 +109,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.menu_movie_location ->{
                 val intent = Intent(this, CinemaLocationView::class.java )
-                startActivity(intent)
-            }
-            R.id.menu_login ->{
-                val intent = Intent(this, LoginActivity::class.java )
                 startActivity(intent)
             }
         }

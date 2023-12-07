@@ -19,16 +19,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".MovieListActivity"
             android:exported="true" />
         <activity
             android:name=".InfoActivity"
-            android:exported="true" />
-        <activity
-            android:name=".JoinActivity"
             android:exported="true" />
         <activity
             android:name=".DailyRanking"
