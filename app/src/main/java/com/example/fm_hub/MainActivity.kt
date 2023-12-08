@@ -148,7 +148,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             loginUser = headerView.findViewById<TextView>(R.id.loginUser)
             loginBtn.setText("로그 아웃")
             loginUser.visibility=View.VISIBLE
-            loginUser.setText(MyFirebaseApplication.email+" 님 ")
+            //var name:String = MyFirebaseApplication.email.toString().split("@")[0]
+            loginUser.setText(MyFirebaseApplication.email+ " 님 ")
 
         }
     }

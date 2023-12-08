@@ -3,6 +3,13 @@
     <style name="FM_Hub_Theme" parent="Theme.Material3.Light.NoActionBar">
         <item name = "colorPrimary">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/ibmplexsanskr_500</item>
+        <item name = "android:datePickerDialogTheme">@style/DialogDatePicker.Theme</item>
     </style>
     <style name="Theme.FM_Hub_Theme" parent="Base.Theme.FM_Hub" />
+
+    <style  name = "DialogDatePicker.Theme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#0000CC</item>
+        <item name="colorPrimaryDark">#0000CC</item>
+        <item name="colorPrimary">#0000CC</item>
+    </style>
 </resources>

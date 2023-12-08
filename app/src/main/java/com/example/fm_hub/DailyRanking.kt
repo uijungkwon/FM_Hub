@@ -1,6 +1,7 @@
 package com.example.fm_hub
 
 import MyAdapter
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
@@ -38,13 +39,6 @@ class DailyRanking : AppCompatActivity() {
 
         textViewDate = findViewById(R.id.textView_date)  //날짜 텍스트뷰
         initializeView()    //날짜 텍스트뷰 클릭 시 달력 띄우기
-
-        //뒤로가기 버튼 툴바
-        /*
-        val toolbar = findViewById<Toolbar>(R.id.toolbar) as androidx.appcompat.widget.Toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        */
 
         // 현재 날짜의 하루 전으로 초기화
         setTargetDtToYesterday()
@@ -115,6 +109,7 @@ class DailyRanking : AppCompatActivity() {
     }
 
     // DatePickerDialog 띄우기
+    @SuppressLint("ResourceAsColor")
     private fun showDatePickerDialog() {
         val currentDate = Calendar.getInstance()
         val year = currentDate.get(Calendar.YEAR)
@@ -144,8 +139,12 @@ class DailyRanking : AppCompatActivity() {
         val yesterdayTimestamp = yesterday.timeInMillis
 
         // 최대 선택 가능한 날짜를 어제로 설정
+        val textColor:Int = R.color.colorPrimary
         datePickerDialog.datePicker.maxDate = yesterdayTimestamp
         datePickerDialog.show()
+        datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(textColor)
+        datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(textColor)
+
     }
 
 
