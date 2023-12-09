@@ -10,7 +10,7 @@ class DetailInfo{
     var title: String? = null//영화명
     var runtime:String? = null//상영시간
     var rating:String? = null//관람등급
-    var plots:plot? = null//줄거리 수정!!!!!
+    var plots:plot? = null//줄거리
     var genre:String? = null //장르
     var posters:String? = null// 영화 포스터
     var repRlsDate:String? = null//개봉연도

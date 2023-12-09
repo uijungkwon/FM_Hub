@@ -13,7 +13,6 @@ class MyApplication: Application() {
         val DETAIL_BASE_URL = "http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/"
 
         var networkService2: NetworkService2
-        //new 영화목록
 
         var networkService3: NetworkService3
 

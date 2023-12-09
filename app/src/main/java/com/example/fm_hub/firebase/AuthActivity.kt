@@ -77,10 +77,9 @@ class AuthActivity : AppCompatActivity() {
             val signInIntent = GoogleSignIn.getClient(this, gso).signInIntent
             requestLauncher.launch(signInIntent)
         }
-        //"가입" 버튼 눌렀을 때,
+        //"회원 가입" 버튼 눌렀을 때,
         binding.signBtn.setOnClickListener {
-            //이메일,비밀번호 회원가입
-
+            //이메일,비밀번호를 입력하여 회원가입을 한다.
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
             MyFirebaseApplication.auth.createUserWithEmailAndPassword(email, password)
@@ -109,9 +108,9 @@ class AuthActivity : AppCompatActivity() {
                 }
 
         }
-        //로그인 버튼
+        //로그인 버튼을 눌렀을 때,
         binding.loginBtn.setOnClickListener {
-            //이메일, 비밀번호 로그인.......................
+            //이메일, 비밀번호를 입력하여 로그인한다.
             val email = binding.authEmailEditView.text.toString()
             val password = binding.authPasswordEditView.text.toString()
             Log.d("kkang", "email:$email, password:$password")
@@ -158,7 +157,7 @@ class AuthActivity : AppCompatActivity() {
 
         } else if (mode === "logout") { //로그아웃 모드 일 때, 모든 버튼 활성화 해서 회원가입 하거나? 로그인 하도록함
             binding.run {
-                //authMainTextView.text = "로그인 하거나 회원가입 해주세요."
+                authMainTextView.text = "로그인 하거나 회원가입 해주세요."
                 logoutBtn.visibility = View.GONE
                 goSignInBtn.visibility = View.VISIBLE
                 googleLoginBtn.visibility = View.GONE //일단 구글인증은 안보이게!
