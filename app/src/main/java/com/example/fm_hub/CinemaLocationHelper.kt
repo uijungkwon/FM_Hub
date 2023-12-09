@@ -43,7 +43,7 @@ class CinemaLocationHelper(private val context: Context) {
 
                 //용산구만 필터링
                 if (sitewhladdr.contains("용산구")||sitewhladdr.contains("마포구")||sitewhladdr.contains("종로구")||sitewhladdr.contains("중구")||sitewhladdr.contains("동대문구")||sitewhladdr.contains("영등포구")) {
-                    if (bplcnm.contains("CGV") || bplcnm.contains("롯데시네마") || bplcnm.contains("메가박스")) {
+                    if (bplcnm.contains("CGV") || bplcnm.contains("씨지브이")|| bplcnm.contains("롯데시네마") || bplcnm.contains("메가박스")) {
                         cinemaDataList.add(AdressData(sitewhladdr, bplcnm, sitetel))
                     }
                 }
