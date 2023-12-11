@@ -14,7 +14,7 @@
             android:layout_marginTop="40dp"
             android:layout_width="400dp"
             android:layout_height="400dp"
-            android:src="@drawable/movie1"/>
+            android:src="@drawable/fmmovie1"/>
         <TextView
             android:id="@+id/name"
             android:layout_width="400dp"
@@ -42,7 +42,7 @@
             android:id="@+id/audience"
             android:layout_width="400dp"
             android:layout_height="40dp"
-            android:paddingLeft="70dp"
+            android:paddingLeft="57dp"
             android:layout_marginTop="5dp"
             android:text="관객"
             android:textSize="17sp"

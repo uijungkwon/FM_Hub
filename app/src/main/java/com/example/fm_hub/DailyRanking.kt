@@ -25,7 +25,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
 class DailyRanking : AppCompatActivity() {
     private lateinit var textViewDate: TextView
     private lateinit var targetDt: String
@@ -146,8 +145,6 @@ class DailyRanking : AppCompatActivity() {
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(textColor)
 
     }
-
-
 
     // 날짜 텍스트뷰에 현재 날짜 설정
     private fun setTargetDtToYesterday() {

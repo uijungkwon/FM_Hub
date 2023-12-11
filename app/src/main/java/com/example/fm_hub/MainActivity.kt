@@ -108,26 +108,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         for (i in 1..3) {
             mfriendItems.add(
                 FriendItem(
-                    R.drawable.movie1,
-                    "하이큐!! 승자와 패자",
-                    "예매율 87.9%",
-                    "누적관객 122,176명, 당일관객 53,379명"
+                    R.drawable.fmmovie1,
+                    "서울의 봄",
+                    "예매율 44.6%",
+                    "누적관객 6,971,884명, 당일관객 108,569명"
                 )
             )
             mfriendItems.add(
                 FriendItem(
-                    R.drawable.movie2,
-                    "Call me by your name",
-                    "예매율 43.3%",
-                    "누적관객 210,496명, 당일관객 23,321명"
+                    R.drawable.fmmovie2,
+                    "3일의 휴가",
+                    "예매율 5.5%",
+                    "누적관객 216,547명, 당일관객 13,427명"
                 )
             )
             mfriendItems.add(
                 FriendItem(
-                    R.drawable.movie3,
-                    "그대들은 어떻게 살 것인가",
-                    "예매율 40.1%",
-                    "누적관객 170,883명, 당일관객 10,230명"
+                    R.drawable.fmmovie3,
+                    "나폴레옹",
+                    "예매율 3.1%",
+                    "누적관객 139,573명, 당일관객 7,538명"
                 )
             )
         }
